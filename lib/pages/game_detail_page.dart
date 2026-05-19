@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/favorite_controller.dart';
-import '../controllers/show_detail_controller.dart';
+import '../controllers/game_detail_controller.dart';
 
 class GameDetailPage extends StatelessWidget {
   const GameDetailPage({super.key, required this.gameId});
@@ -49,9 +49,11 @@ class GameDetailPage extends StatelessWidget {
         }
 
         final game = detailController.game;
-        final imageUrl = game['freetogame_profile_url']?['thumbnail'] as String?;
-        final date = game['release_date']?.toString() ?? '-';
-        final genres = (game['genre'] as List).join(', ');
+        final imageUrl = game['thumbnail'] as String?;
+        final date = game['release_date'] as String? ?? '-';
+        final genres = (game['genre'] as String?)?.split(',').join(', ') ?? '-';
+        final dev = (game['developer'] as String?)?.split(',').join(', ') ?? '-';
+        final pub = (game['publisher'] as String?)?.split(',').join(', ') ?? '-';
         final summary =
             _stripHtml(game['short_description'] as String? ?? 'Belum ada ringkasan.');
         final isFavorite = favoriteController.isFavorite(game['id'] as int);
@@ -94,9 +96,22 @@ class GameDetailPage extends StatelessWidget {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(Icons.star_rounded, color: Colors.amber),
+                    const SizedBox(width: 10),
+                    Text('release date'),
+                    const SizedBox(width: 10),
+                    Text('publisher'),
+                    const SizedBox(width: 10),
+                    Text('Developer')
+                  ],
+                ),
+                Row(
+                  children: [
                     const SizedBox(width: 6),
-                    Text('release date: $date'),
+                    Text('$date'),
+                    const SizedBox(width: 6),
+                    Text('$dev'),
+                    const SizedBox(width: 6),
+                    Text('$pub')
                   ],
                 ),
                 const SizedBox(height: 8),

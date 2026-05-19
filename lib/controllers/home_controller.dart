@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../services/tvmaze_service.dart';
+import '../services/games_service.dart';
 
 class HomeController extends GetxController {
   final games = <dynamic>[].obs;
@@ -16,7 +16,7 @@ class HomeController extends GetxController {
   Future<void> fetchGames() async {
     try {
       isLoading.value = true;
-      games.assignAll(await TvMazeService.fetchGames());
+      games.assignAll(await GamesService.fetchGames());
       errorMessage.value = '';
     } catch (error) {
       errorMessage.value = error.toString();

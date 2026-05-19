@@ -18,14 +18,13 @@ class FavoriteService {
 
   static Future<void> addFavorite(
     String username,
-    Map<String, dynamic> show,
+    Map<String, dynamic> game,
   ) async {
-    await _box.put(_favoriteKey(username, show['id'] as int), {
+    await _box.put(_favoriteKey(username, game['id'] as int), {
       'username': username,
-      'id': show['id'],
-      'name': show['name'],
-      'image': show['image'],
-      'rating': show['rating'],
+      'id': game['id'],
+      'title': game['title'],
+      'thumbnail': game['thumbnail'],
     });
   }
 

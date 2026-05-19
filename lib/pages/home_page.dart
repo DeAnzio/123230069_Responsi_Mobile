@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
-import 'show_detail_page.dart';
+import 'game_detail_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

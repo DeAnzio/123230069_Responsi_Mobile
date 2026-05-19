@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/favorite_controller.dart';
-import 'show_detail_page.dart';
+import 'game_detail_page.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -25,8 +25,7 @@ class FavoritePage extends StatelessWidget {
             separatorBuilder: (_, __) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               final game = favorites[index];
-              final imageUrl = game['image']?['medium'] as String?;
-              final rating = game['rating']?['average']?.toString() ?? '-';
+              final imageUrl = game['thumbnail'] as String?;
 
               return Card(
                 elevation: 0,
@@ -45,8 +44,8 @@ class FavoritePage extends StatelessWidget {
                           : Image.network(imageUrl, fit: BoxFit.cover),
                     ),
                   ),
-                  title: Text(game['name'] as String),
-                  subtitle: Text('Rating: $rating'),
+                  title: Text(game['title'] as String),
+                  
                   onTap: () {
                     Get.to(() => GameDetailPage(gameId: game['id'] as int));
                   },

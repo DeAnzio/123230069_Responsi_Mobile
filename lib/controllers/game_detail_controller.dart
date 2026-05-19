@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../services/tvmaze_service.dart';
+import '../services/games_service.dart';
 
 class GameDetailController extends GetxController {
   GameDetailController(this.gameId);
@@ -19,7 +19,7 @@ class GameDetailController extends GetxController {
   Future<void> fetchDetail() async {
     try {
       isLoading.value = true;
-      game.assignAll(await TvMazeService.fetchGameDetail(gameId));
+      game.assignAll(await GamesService.fetchGameDetail(gameId));
       errorMessage.value = '';
     } catch (error) {
       errorMessage.value = error.toString();

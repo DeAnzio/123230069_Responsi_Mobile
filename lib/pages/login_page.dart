@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                     const Icon(Icons.tv_rounded, size: 64),
                     const SizedBox(height: 12),
                     Text(
-                      'StreamingCOY',
+                      'STEAMKWCOY',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
