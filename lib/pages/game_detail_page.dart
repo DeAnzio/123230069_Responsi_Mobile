@@ -54,6 +54,7 @@ class GameDetailPage extends StatelessWidget {
         final genres = (game['genre'] as String?)?.split(',').join(', ') ?? '-';
         final dev = (game['developer'] as String?)?.split(',').join(', ') ?? '-';
         final pub = (game['publisher'] as String?)?.split(',').join(', ') ?? '-';
+        final platform = (game['platfform'] as String?)?.split(',').join(', ') ?? '-';
         final summary =
             _stripHtml(game['short_description'] as String? ?? 'Belum ada ringkasan.');
         final isFavorite = favoriteController.isFavorite(game['id'] as int);
@@ -77,7 +78,16 @@ class GameDetailPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Row(
+                  children: [
+                    const SizedBox(height: 8),
+                    Text(' ${genres.isEmpty ? '-' : genres}'),
+                    const SizedBox(height: 8),
+                    Text(' ${platform.isEmpty ? '-' : platform}'),
+                  ]
+                ),
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  
                   children: [
                     Expanded(
                       child: Text(
@@ -114,8 +124,6 @@ class GameDetailPage extends StatelessWidget {
                     Text('$pub')
                   ],
                 ),
-                const SizedBox(height: 8),
-                Text('Genre: ${genres.isEmpty ? '-' : genres}'),
                 const SizedBox(height: 20),
                 Text('Overview', style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 8),
